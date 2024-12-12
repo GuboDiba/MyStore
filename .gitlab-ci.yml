@@ -3,7 +3,7 @@ stages:
   # - deploy
 
 # Build stage: Build the React app and Docker image
-build-job:
+build:
   stage: build
   image: docker:latest
   services:
@@ -21,13 +21,13 @@ build-job:
     - main
 
 # Deploy stage: Pull and run the Docker container on the server
-deploy-job:
-  stage: deploy
-  image: ruby:3.1
-  before_script:
-    - apt-get update && apt-get install -y sshpass
-  script:
-    - echo "Logging into Docker registry loading..."
+# deploy:
+#   stage: deploy
+#   image: ruby:3.1
+#   before_script:
+#     - apt-get update && apt-get install -y sshpass
+#   script:
+#     - echo "Logging into Docker registry loading..."
 
-  only:
-    - main
+#   only:
+#     - main
