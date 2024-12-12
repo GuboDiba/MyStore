@@ -1,6 +1,6 @@
 stages:
   - build
-  - deploy
+  # - deploy
 
 # Build stage: Build the React app and Docker image
 build-job:
