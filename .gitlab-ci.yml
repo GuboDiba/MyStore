@@ -1,0 +1,33 @@
+stages:
+  - build
+  - deploy
+
+# Build stage: Build the React app and Docker image
+build-job:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+  script:
+   - echo "Building the Docker image..."
+   - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+   - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+  only:
+    - main
+
+# Deploy stage: Pull and run the Docker container on the server
+deploy-job:
+  stage: deploy
+  image: ruby:3.1
+  before_script:
+    - apt-get update && apt-get install -y sshpass
+  script:
+    - echo "Logging into Docker registry loading..."
+
+  only:
+    - main
