@@ -35,7 +35,7 @@ class AuthController extends Controller
             ]);
 
             return response()->json([
-                'message' => 'Registration successful!',
+                'message' => 'User registered successfully!',
                 'user' => $user,
             ], 201);
         } catch (\Exception $e) {

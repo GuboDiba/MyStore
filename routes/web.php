@@ -49,3 +49,4 @@ use App\Http\Controllers\AuthController;
     Route::post('/payment/callback', [OrderController::class, 'paymentCallback']);
     Route::get('/orders/{id}', [OrderController::class, 'showOrder'])->name('orders.show');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+

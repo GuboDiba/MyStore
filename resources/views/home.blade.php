@@ -17,38 +17,25 @@
 </head>
 <body style="margin-bottom: 70px; margin-top: 50px; margin-right: 50px; margin-left: 50px;"> 
   <!-- Fixed Header with Products and Search -->
-  <div style="position: fixed; top: 80px; left: 10px; right: 10px; width: 100%; background-color: rgba(255, 255, 255, 0.8); z-index: 1000; padding: 15px 0; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+            <div style="position: fixed; top: 80px; left: 10px; right: 10px; width: 100%; background-color: rgba(255, 255, 255, 0.8); z-index: 1000; padding: 15px 0; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
 
-            <h1 style="font-size: 28px; font-weight: bold; color: #333; margin: 0;">Our Products</h1>
+                        <h1 style="font-size: 28px; font-weight: bold; color: #333; margin: 0;">Our Products</h1>
 
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <input type="text" id="search-input" placeholder="I'm looking for..." 
-                    style="width: 300px; padding: 10px; font-size: 16px; border: 2px solid #ddd; border-radius: 25px; outline: none; transition: border-color 0.3s ease;" />
-                <div onclick="searchFunction()" style="background-color: #007bff; padding: 10px; border-radius: 50%; cursor: pointer; transition: background-color 0.3s ease;">
-                    <img src="https://img.kilimall.com/c/h5/imgs/search-icon@2x.png?x-image-process=image/format,webp/resize,w_80" alt="Search Icon" style="width: 20px; height: 20px;" />
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="text" id="search-input" placeholder="I'm looking for..." 
+                                style="width: 300px; padding: 10px; font-size: 16px; border: 2px solid #ddd; border-radius: 25px; outline: none; transition: border-color 0.3s ease;" />
+                            <div onclick="searchFunction()" style="background-color: #007bff; padding: 10px; border-radius: 50%; cursor: pointer; transition: background-color 0.3s ease;">
+                                <img src="https://img.kilimall.com/c/h5/imgs/search-icon@2x.png?x-image-process=image/format,webp/resize,w_80" alt="Search Icon" style="width: 20px; height: 20px;" />
+                            </div>
+                        </div>
+
+                        
+                    </div>
                 </div>
+
+
             </div>
-
-            
-        </div>
-    </div>
-
-    <!-- JavaScript to handle the search function -->
-    <script>
-        function searchFunction() {
-            var query = document.getElementById('search-input').value;
-            if(query) {
-                alert("Searching for: " + query);
-                // Add your search logic here (e.g., redirect or API call)
-            } else {
-                alert("Please enter a search term.");
-            }
-        }
-    </script>
-
-
-</div>
 
             <div class="row">
             @foreach ($products as $product)
