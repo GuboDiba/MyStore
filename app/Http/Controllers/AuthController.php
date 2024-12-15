@@ -7,18 +7,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:8',
-            ]);
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Registration failed. Please try again.',
+                'message' => $validator->errors()->first(), 
+            ], 422);
+        }
+
+        try {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -26,12 +35,13 @@ class AuthController extends Controller
             ]);
 
             return response()->json([
-                'message' => 'User registered successfully!',
+                'message' => 'Registration successful!',
+                'user' => $user,
             ], 201);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Registration failed. Please try again.',
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 500);
         }
     }
@@ -71,4 +81,17 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    public function index()
+    {
+        return view("login");
+    }
+
+    
+    public function registerUser()
+    {
+        return view("register");
+    }
+
+    
 }

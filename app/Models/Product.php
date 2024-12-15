@@ -1,37 +1,64 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Product
+ * 
+ * @property int $id
+ * @property string $name
+ * @property string|null $description
+ * @property int $price
+ * @property string|null $image_url
+ * @property int $stock
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * 
+ * @property Collection|Cart[] $carts
+ * @property Collection|OrderItem[] $order_items
+ * @property Collection|Order[] $orders
+ *
+ * @package App\Models
+ */
 class Product extends Model
 {
-    use HasFactory;
+	protected $table = 'products';
 
-    protected $fillable = [
-        'name', 'description', 'price', 'stock'
-    ];
+	protected $casts = [
+		'price' => 'int',
+		'stock' => 'int'
+	];
 
-    /**
-     * Get the carts that contain the product.
-     */
-    public function carts()
-    {
-        return $this->belongsToMany(Cart::class)->withPivot('quantity');
-    }
+	protected $fillable = [
+		'name',
+		'description',
+		'price',
+		'image_url',
+		'stock'
+	];
 
-    /**
-     * Get the orders that include the product.
-     */
-    public function orders()
-    {
-        return $this->belongsToMany(Order::class)->withPivot('quantity', 'price');
-    }
+	public function carts()
+	{
+		return $this->hasMany(Cart::class);
+	}
 
-    // get items as orderd
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
+	public function order_items()
+	{
+		return $this->hasMany(OrderItem::class);
+	}
+
+	public function orders()
+	{
+		return $this->belongsToMany(Order::class)
+					->withPivot('id', 'quantity', 'price')
+					->withTimestamps();
+	}
 }

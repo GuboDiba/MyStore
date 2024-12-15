@@ -51,7 +51,7 @@ RUN composer install --prefer-dist --no-interaction --no-dev --optimize-autoload
 USER www-data
 
 # Copy Nginx configuration
-# COPY nginx.conf /etc/nginx/sites-available/default
+COPY nginx.conf /etc/nginx/sites-available/default
 
 # Expose port 80
 EXPOSE 80
