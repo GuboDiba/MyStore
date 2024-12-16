@@ -185,6 +185,8 @@ public function formatPhoneNumber($phone)
 public function processPayment(Request $request)
 {
     try {
+        Log::info('Validating request data', $request->all());
+        
         $request->validate([
             'phone' => 'required|regex:/^\+?[0-9]{10,15}$/',
             'amount' => 'required|numeric|min:1',
