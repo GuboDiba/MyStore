@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Increase button clicked!');
             const productId = this.getAttribute('data-id');
             console.log('Product ID:', productId);
-
             updateCart(productId, 'increase');
         });
     });
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function () {
             console.log('Decrease button clicked!');
             const productId = this.getAttribute('data-id');
-
+            
             updateCart(productId, 'decrease');
             
         });
