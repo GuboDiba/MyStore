@@ -24,8 +24,8 @@
                     <input type="password" id="password" name="password" placeholder="Enter your password" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; outline: none;">
                 </div>
                 <div style="margin-bottom: 20px;">
-                    <label for="password" style="display: block; font-size: 14px; color: #333; margin-bottom: 5px;">Confirm Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; outline: none;">
+                    <label for="password_confirmation" style="display: block; font-size: 14px; color: #333; margin-bottom: 5px;">Confirm Password</label>
+                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm your password" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; outline: none;">
                 </div>
                 <button type="submit" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">Register</button>
             </form>
