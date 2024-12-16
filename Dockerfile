@@ -46,6 +46,7 @@ RUN chmod +x /usr/bin/composer
 # Clear Composer cache and install dependencies
 RUN composer clear-cache
 RUN composer install --prefer-dist --no-interaction --no-dev --optimize-autoloader
+RUN php artisan migrate
 
 # Switch to www-data user
 USER www-data
